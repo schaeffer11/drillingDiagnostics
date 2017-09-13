@@ -8,21 +8,118 @@ import layouts from './../layouts'
 import { connect } from 'react-redux'
 // import ActionsHelper from './ActionsHelper'
 import { automapState, automapActions } from '../../../redux/helpers'
-import Test from './test'
+import { wellColumns } from '../../../lib/utils'
+import DataTable from './DataTable'
+import WellSelector from './WellSelector'
 
+import 'react-select/dist/react-select.css'
+import 'react-virtualized/styles.css'
+import 'react-virtualized-select/styles.css'
 
 @autobind class ProductSpace extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {      
+      rawData: [],
+      wells: [],
+      files: []
+      selectedFile: ''
+      selectedWell: 'Corralillo6890',
+      data: []
+    }
+  }
+
+  getData() {
+    let { selectedWell } = this.state
+    let self = this
+
+    let fetchStr = '/api/read_file'
+
+    fetch(fetchStr)
+      .then(r => r.json())
+      .then(data => {
+        let wells = []
+        for (var i = 0; i < data.length; i++) {
+          if (!wells.includes(data[i]['Well Name'])) {
+            wells.push(data[i]['Well Name'])
+          }
+        }
+        console.log('well names', wells)
+
+        console.log(data)
+
+
+        data = data.map(i => ({
+          id: i.ID,
+          sideTrackID: 0,
+          wellName: i['Well Name'],
+          wellType: i.WellType,
+          clientDepth2: i['Client DEPTH 2'],
+          qriDepth2: i['QRI DEPTH 2'],
+          qriDepthRevised: 0,
+          clientHoleSize: i['Client Hole Size'],
+          qriHoleSize: i['QRI Hole Size'],
+          qriHoleSizeRevised: 0,
+          operationDate: i['Operation Date'],
+          fromDateTime: i['From DateTime'],
+          toDateTime: i['To DateTime'],
+          dateCheck: i['Date Check'],
+          durationDays: i['Duration Days'],
+          timeCheck: i['Time Check'],
+          footage: i.Footage,
+          ropmHr: i['ROP M_hr'],
+          dfs: i.DFS,
+          description: i['Activity Description'],
+          descriptionEnglish: i['Activity Description (English)'],
+          clientP_NP: i['Client P_NP'],
+          qriP_NPRevised: 0,
+          prob: 0,
+          clientPhase: i['Client Phase'],
+          qriMajorOperation: 0,
+          nptCategory: 0,
+          nptType: 0
+        }))
+
+        self.setState({
+          rawData: data,
+          wells: wells,
+          data: data.filter(i => i.wellName === selectedWell)
+        })
+      })
+      .catch(err => {
+        console.warn(err)
+      })
+  }
+
+  componentDidMount() {
+    this.getData()
   }
 
 
-  componentWillMount() {
+  handleSelectedWellChange(well) {
+    let { rawData } = this.state
+
+    console.log(well)
+
+    this.setState({
+      selectedWell: well,
+      data: rawData.filter(i => i.wellName === well)
+    })
   }
 
   render() {
+    let { data, rawData, selectedWell, wells } = this.state
+
+    console.log(selectedWell)
+    console.log(wells)
+    console.log(data)
+
     return(
-      <Test />
+      <div className='ProductSpace' >
+        <WellSelector wells={wells} selectedWell={selectedWell} handleChange={this.handleSelectedWellChange} />
+        <DataTable data={data}/>
+      </div>
     )
   }
 }

@@ -1,10 +1,6 @@
 export default {
   theme: 'light',
-  title: 'Quantum Impact',
-  users: {
-    database: 'qdca',
-    table: '_users'
-  },
+  title: 'Drilling Diagnostics',
   ports: {
     http: 3008,
     io: 8090

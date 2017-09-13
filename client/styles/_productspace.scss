@@ -274,5 +274,20 @@
   filter: invert(93%) hue-rotate(180deg);
 }
 
+.wellData {
+  position: absolute;
+  width: 100%;
+  top: 20%;
+}
+
+.well {
+  position: absolute;
+  width: 50%;
+  top:5%;
+}
+
+
+ 
+
 @import 'workspace-nav';
 @import 'workspace';

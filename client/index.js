@@ -33,7 +33,6 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 // child components
 import { AppContainer } from './components/Layout/App'
-import { AppEINContainer } from './components/Layout/AppEIN'
 import Pages from './components/Pages'
 
 
