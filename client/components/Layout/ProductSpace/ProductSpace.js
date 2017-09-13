@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { automapState, automapActions } from '../../../redux/helpers'
 import { wellColumns } from '../../../lib/utils'
 import DataTable from './DataTable'
+import FileSelector from './FileSelector'
 import WellSelector from './WellSelector'
 
 import 'react-select/dist/react-select.css'
@@ -23,18 +24,28 @@ import 'react-virtualized-select/styles.css'
     this.state = {      
       rawData: [],
       wells: [],
-      files: []
-      selectedFile: ''
+      files: [],
+      selectedFile: undefined,
       selectedWell: 'Corralillo6890',
       data: []
     }
   }
 
-  getData() {
+  getFiles() {
+    fetch('/api/get_files')
+      .then(r => r.json())
+      .then(data => {
+        this.setState({
+          files: data
+        })
+      })
+  }
+
+  getWells(file) {
     let { selectedWell } = this.state
     let self = this
 
-    let fetchStr = '/api/read_file'
+    let fetchStr = '/api/read_file?file=' + file
 
     fetch(fetchStr)
       .then(r => r.json())
@@ -45,9 +56,6 @@ import 'react-virtualized-select/styles.css'
             wells.push(data[i]['Well Name'])
           }
         }
-        console.log('well names', wells)
-
-        console.log(data)
 
 
         data = data.map(i => ({
@@ -84,7 +92,6 @@ import 'react-virtualized-select/styles.css'
         self.setState({
           rawData: data,
           wells: wells,
-          data: data.filter(i => i.wellName === selectedWell)
         })
       })
       .catch(err => {
@@ -93,14 +100,12 @@ import 'react-virtualized-select/styles.css'
   }
 
   componentDidMount() {
-    this.getData()
+    this.getFiles()
   }
 
 
   handleSelectedWellChange(well) {
     let { rawData } = this.state
-
-    console.log(well)
 
     this.setState({
       selectedWell: well,
@@ -108,15 +113,23 @@ import 'react-virtualized-select/styles.css'
     })
   }
 
-  render() {
-    let { data, rawData, selectedWell, wells } = this.state
+  handleSelectedFileChange(file) {
+    this.getWells(file)
 
-    console.log(selectedWell)
-    console.log(wells)
-    console.log(data)
+    this.setState({
+      selectedFile: file,
+      selectedWell: undefined,
+      data: [],
+      wells: []
+    })
+  }
+
+  render() {
+    let { data, rawData, selectedWell, wells, files, selectedFile} = this.state
 
     return(
       <div className='ProductSpace' >
+        <FileSelector files={files} selectedFile={selectedFile} handleChange={this.handleSelectedFileChange} />
         <WellSelector wells={wells} selectedWell={selectedWell} handleChange={this.handleSelectedWellChange} />
         <DataTable data={data}/>
       </div>

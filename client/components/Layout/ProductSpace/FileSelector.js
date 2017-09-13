@@ -3,22 +3,22 @@ import React, { Component } from 'react'
 import autobind from 'autobind-decorator'
 import VirtualizedSelect from 'react-virtualized-select'
 
-@autobind class WellSelector extends Component {
+@autobind class FileSelector extends Component {
   constructor(props) {
     super(props)
   }
 
 
   render() {
-    let { wells, selectedWell, handleChange} = this.props
+    let { files, selectedFile, handleChange} = this.props
 
     return (
       <VirtualizedSelect
-        className="well"
-        placeholder="Select a Well"
+        className="file"
+        placeholder="Select a File"
         simpleValue={true}
-        value={selectedWell}
-        options={wells.map(i => ({ label:i, value:i }))}
+        value={selectedFile}
+        options={files.map(i => ({ label:i.slice(0, -4), value:i }))}
         onChange={handleChange}
         clearable = {false}
       />
@@ -26,4 +26,4 @@ import VirtualizedSelect from 'react-virtualized-select'
   }
 }
 
-export default WellSelector
+export default FileSelector
