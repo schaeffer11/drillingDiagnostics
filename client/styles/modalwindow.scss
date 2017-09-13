@@ -1,0 +1,52 @@
+#react-aria-modal-dialog {
+  width: 100%;
+  height: 100%;
+}
+
+.gridview-container {
+  -webkit-filter: invert(93%) hue-rotate(180deg);
+  filter: invert(93%) hue-rotate(180deg);
+}
+
+.chart-thumbnail {
+  border-radius: 1.2em;
+  width: 17em;
+  height: 12em;
+  cursor: pointer;
+}
+
+.gridview-phase-radio-container {
+  display: inline-block;
+  height: auto;
+  padding-bottom: 0.5em;
+  background-color: #F9F9F9;
+  width: 100%;
+}
+
+.radio-button {
+  display: inline-block;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  margin-top: 0.3em;
+  float: right;
+}
+
+.rc-radio-inner {
+  border-color: #579fcb;
+  border-width: 2px;
+}
+
+.close-button {
+  float: left;
+  margin-left: 0.4em;
+  margin-top: 0.2em;
+  font-size: 0.8em;
+}
+
+.img-container {
+  text-align: center;
+  border-radius: 1.2em;
+  &.highlighted-item {
+    background-color: #579fcb;
+  }
+}

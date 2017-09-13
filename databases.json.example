@@ -1,0 +1,6 @@
+{
+  "lazard": {
+    "host": "somehostname.amazonaws.com",
+    "database": "lazard-global"
+  }
+}

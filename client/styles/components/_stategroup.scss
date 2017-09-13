@@ -1,0 +1,39 @@
+$stateGroupSpacing: 0.7em;
+
+.state-group {
+  text-transform: uppercase;
+  font-weight: lighter;
+  float: right;
+  line-height: 2.5em;
+
+  & + .state-group {
+    margin-right: $stateGroupSpacing;
+    padding-right: $stateGroupSpacing;
+    border-right: 1px solid #ccc;
+  }
+
+  > * {
+    opacity: 0.3;
+    cursor: pointer;
+    margin-right: 0.4em;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .active {
+    font-weight: bold;
+    letter-spacing: -0.03em;
+    // color: #3bb15f;
+    opacity: 1;
+  }
+
+  &.reset-zoom a {
+    color: #ca6868;
+  }
+}

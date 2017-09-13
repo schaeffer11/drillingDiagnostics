@@ -1,0 +1,25 @@
+.flex-input {
+  &.madlib {
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: 1px dotted #69e;
+
+    // &::placeholder {
+    //   color: #7be;
+    // }
+
+    &:focus, &:active {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.flex-input-measurebox {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+}

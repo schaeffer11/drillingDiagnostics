@@ -1,0 +1,23 @@
+.portfolioHeader {
+  text-align: center;
+  font-size: 0.9em;
+  margin-bottom: 0.4em;
+}
+
+.tableMenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tableMenuInput {
+  float: left;
+  margin: 0;
+  width: 76%;
+}
+
+.tableMenuButton {
+  float: left;
+  margin: 0;
+  width: 12%;
+}

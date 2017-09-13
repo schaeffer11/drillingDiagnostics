@@ -1,0 +1,76 @@
+.filters-menu-content {
+  margin: 10px 10px 0 10px;
+}
+
+.filters-menu-content li {
+  margin: 0;
+}
+
+.filterMenuHeader {
+  font-size: 1.1em;
+  display: inline;
+}
+
+.sectionHeader {
+  font-size: 0.95em;
+  font-weight: bold;
+}
+
+.settingLabel {
+  font-size: 0.8em;
+}
+
+.closeFilters {
+  float: right;
+  cursor: pointer;
+}
+
+.filterList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.setting {
+  padding: 0.5em 0 0.5em 0;
+}
+
+.cheeseburger-menu-outer {
+  right: -1em !important;
+}
+
+.cheeseburger-menu-overlay {
+  visibility: hidden;
+}
+
+.searchBox {
+  margin: 10px 0 10px 0;
+}
+
+.rc-text {
+  font-size: 0.8em;
+  padding: 0 0 3px 5px;
+}
+
+.settingsBody {
+  margin-top: 1em;
+  overflow-y: auto;
+  position: absolute;
+  top: 1em;
+  bottom: 0.5em;
+  left: 0;
+  right: 0;
+}
+
+.filters-menu-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+
+.filtersBtn:disabled {
+  background-color: #e5e5e5 !important;
+  cursor: not-allowed;
+}

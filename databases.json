@@ -1,0 +1,6 @@
+{
+  "qdca": {
+    "host": "prod-demo-db-mariadb.cnsgxgl3xjtt.us-west-2.rds.amazonaws.com",
+    "database": "qdca"
+  }
+}

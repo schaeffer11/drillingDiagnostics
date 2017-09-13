@@ -1,0 +1,33 @@
+$pagePadding: 1.5em;
+
+.page {
+  position: absolute;
+  top: $workspaceToolbarHeight;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  background-color: #fff;
+}
+
+.page.padded-children {
+  > * {
+    background-color: #fff;
+    width: 46%;
+    height: 44%;
+  }
+}
+
+.help-page {
+  padding: $pagePadding;
+  text-align: center;
+
+  .logo-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 10em;
+  }
+}
+
+@import 'components/text';

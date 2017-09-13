@@ -1,0 +1,126 @@
+$buttonBorderRadius: 0.4em;
+input[type=text],
+input[type=password],
+button {
+  font-size: 1.2em;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+  border: 1px solid #ddd;
+  font-weight: 200;
+  outline: none;
+  &:focus {
+    box-shadow: 0 0 0.05em 0.15em #def
+  }
+}
+
+input {
+  &.madlib {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px dashed #aaa;
+    line-height: 1em;
+  }
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  color: white;
+  background-color: #579fcb;
+  border-radius: $buttonBorderRadius;
+  text-transform: uppercase;
+  border: none;
+  font-size: 0.8em;
+  font-weight: 200;
+  padding: 0.34em 0.65em 0.35em;
+  font-family: sans-serif;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.actions {
+  & > * {
+    margin-right: 0.4em;
+  }
+  &.grouped {
+    & > * {
+      margin-right: 0;
+    }
+    & > button {
+      border-radius: 0;
+      margin-right: 0.05em;
+      &:first-child {
+        border-top-left-radius: $buttonBorderRadius;
+        border-bottom-left-radius: $buttonBorderRadius;
+      }
+      &:last-child {
+        border-top-right-radius: $buttonBorderRadius;
+        border-bottom-right-radius: $buttonBorderRadius;
+      }
+    }
+  }
+}
+
+.login-form {
+  top: 30%;
+  width: 20em;
+  margin-left: -10em;
+  position: absolute;
+  left: 50%;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 3%;
+    bottom: 0;
+    width: 4em;
+    height: 3em;
+    background: url('/images/qri-logo.hires.png') no-repeat;
+    background-size: 100%;
+  }
+  input {
+    font-size: 1.5em;
+    margin-bottom: 0.6em;
+    width: 90%;
+  }
+  &.error {
+    input {
+      border: 1px solid #d99;
+      background-color: #fee;
+      &:focus {
+        box-shadow: 0 0 0.05em 0.15em #fee
+      }
+    }
+  }
+  button {
+    font-size: 1.2em;
+    margin-top: 0.5em;
+    padding: 0.4em 1em;
+    &.verifying {
+      width: 45%;
+      background-color: #e5e5e5;
+      &:focus {
+        box-shadow: 0 0 0.05em 0.15em #eee
+      }
+    }
+  }
+  label {
+    display: block;
+    span {
+      font-size: 0.9em;
+      font-weight: 400;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.2em;
+      color: #666;
+      small {
+        text-transform: lowercase;
+        letter-spacing: 0.04em;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+@import './flex-input';

@@ -1,0 +1,76 @@
+.grid {
+  width: 100%;
+  height: 100%;
+  float: left;
+  position: relative;
+  z-index: 0;
+  outline: 1px solid #eee;
+
+  &.w75 {
+    width: 75%;
+  }
+
+  &.w70 {
+    width: 70%;
+  }
+
+  &.w66 {
+    width: 66%;
+  }
+
+  &.w50 {
+    width: 50%;
+  }
+
+  &.w33 {
+    width: 33%;
+  }
+
+  &.w30 {
+    width: 30%;
+  }
+
+  &.w25 {
+    width: 25%;
+  }
+
+  &.w20 {
+    width: 20%;
+  }
+
+  &.h80 {
+    height: 80%;
+  }
+
+  &.h75 {
+    height: 75%;
+  }
+
+  &.h70 {
+    height: 70%;
+  }
+
+  &.h66 {
+    height: 66%;
+  }
+
+  &.h50 {
+    height: 50%;
+  }
+
+  &.h33 {
+    height: 33%;
+  }
+
+  &.h30 {
+    height: 30%;
+  }
+
+  &.h25 {
+    height: 25%;
+  }
+
+  &.h20 {
+    height: 20%;
+  }
+}

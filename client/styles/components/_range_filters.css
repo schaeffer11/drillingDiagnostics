@@ -1,0 +1,42 @@
+.slider {
+  margin: 0.5em 0 0.3em 0;
+}
+
+.units {
+  font-size: .7em;
+}
+
+.filterSwitch {
+  float: right;
+  margin-bottom: 0.2em;
+  margin-top: 0.2em;
+}
+
+.rangeInput {
+  width: 45% !important;
+  color: green;
+  margin-bottom: 0.6em !important;
+}
+
+.rangeMax {
+  float: right !important;
+}
+
+.rangeMin {
+  float: left !important;
+}
+
+.rangeFilters {
+  margin: 0 0.2em 0 0.2em;
+}
+
+.filtersBtn {
+  max-width: 47%;
+  font-size: 0.8em;
+  margin-top: 0.4em;
+}
+
+#resetFiltersBtn {
+  background-color: red;
+  float: right;
+}
