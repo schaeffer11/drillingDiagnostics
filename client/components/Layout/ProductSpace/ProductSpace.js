@@ -56,7 +56,7 @@ import 'react-virtualized-select/styles.css'
 
 
         data = data.map(i => ({
-          id: i.ID,
+          id: parseInt(i.ID),
           sideTrackID: 0,
           wellName: i['Well Name'],
           wellType: i.WellType,

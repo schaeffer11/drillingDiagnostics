@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { automapState, automapActions } from '../../../redux/helpers'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
-import { wellColumns } from '../../../lib/utils'
+import { wellColumns, serielToDate, dateToString } from '../../../lib/utils'
 
 const columns = wellColumns
 
