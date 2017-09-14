@@ -4,113 +4,114 @@ import React from 'react'
 export const wellColumns = [{
           Header: 'ID',
           accessor: 'id',
-          Width: 115
+          Width: 175,
+          sortable: false
         }, {
           Header: 'SideTrackID',
           accessor: 'sideTrackID',
-          Width: 65
+          Width: 175
         }, {
           Header: 'WellName',
           accessor: 'wellName',
-          Width: 65
+          Width: 175
         }, {
           Header: 'WellType',
           accessor: 'wellType',
-          Width: 100
+          Width: 175
         }, {
           Header: 'ClientDepth2',
           accessor: 'clientDepth2',
-          Width: 100
+          Width: 175
         }, {
           Header: 'QRIDepth2',
           accessor: 'qriDepth2',
-          Width: 100
+          Width: 175
         }, {
           Header: 'QRIDepthRevised',
           accessor: 'qriDepthRevised',
-          Width: 100
+          Width: 175
         }, {
           Header: 'ClientHoleSize',
           accessor: 'clientHoleSize',
-          Width: 100
+          Width: 175
         }, {
           Header: 'QRIHoleSize',
           accessor: 'qriHoleSize',
-          Width: 100
+          Width: 175
         }, {
           Header: 'QRIHoleSizeRevised',
           accessor: 'qriHoleSizeRevised',
-          Width: 100
+          Width: 175
         }, {
           Header: 'OperationDate',
           accessor: 'operationDate',
-          Width: 100
+          Width: 175
         }, {
           Header: 'FromDateTime',
           accessor: 'fromDateTime',
-          Width: 100
+          Width: 175
         }, {
           Header: 'ToDateTime',
           accessor: 'toDateTime',
-          Width: 100
+          Width: 175
         }, {
           Header: 'DateCheck',
           accessor: 'dateCheck',
-          Width: 100
+          Width: 175
         }, {
           Header: 'DurationDays',
           accessor: 'durationDays',
-          Width: 100
+          Width: 175
         }, {
           Header: 'TimeCheck',
           accessor: 'timeCheck',
-          Width: 100
+          Width: 175
         }, {
           Header: 'Footage',
           accessor: 'footage',
-          Width: 100
+          Width: 175
         }, {
           Header: 'ROPM_hr',
           accessor: 'ropmHr',
-          Width: 100
+          Width: 175
         }, {
           Header: 'DFS',
           accessor: 'dfs',
-          Width: 100
+          Width: 175
         }, {
           Header: 'ActivityDescription',
           accessor: 'description',
-          Width: 100
+          Width: 175
         }, {
           Header: 'ActivityDescriptionEnglish',
           accessor: 'descriptionEnglish',
-          Width: 100
+          Width: 175
         }, {
           Header: 'ClientP_NP',
           accessor: 'clientP_NP',
-          Width: 100
+          Width: 175
         }, {
           Header: 'QRIRevisedP_NP',
           accessor: 'qriP_NPRevised',
-          Width: 100
+          Width: 175
         }, {
           Header: 'Probability',
           accessor: 'prob',
-          Width: 100
+          Width: 175
         }, {
           Header: 'ClientPhase',
           accessor: 'clientPhase',
-          Width: 100
+          Width: 175
         }, {
           Header: 'QRIMajorOperation',
           accessor: 'qriMajorOperation',
-          Width: 100
+          Width: 175
         }, {
           Header: 'NPTCategory',
           accessor: 'nptCategory',
-          Width: 100
+          Width: 175
         }, {
           Header: 'NPTType',
           accessor: 'nptType',
-          Width: 100
+          Width: 175
         }]

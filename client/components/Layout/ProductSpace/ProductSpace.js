@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import autobind from 'autobind-decorator'
-import { Responsive, WidthProvider } from 'react-grid-layout'
-import 'react-grid-layout/css/styles.css'
-import measure from 'remeasure'
-import layouts from './../layouts'
 import { connect } from 'react-redux'
-// import ActionsHelper from './ActionsHelper'
 import { automapState, automapActions } from '../../../redux/helpers'
 import { wellColumns } from '../../../lib/utils'
 import DataTable from './DataTable'
 import FileSelector from './FileSelector'
 import WellSelector from './WellSelector'
+import AreaGraph from './AreaGraph'
+import LineGraph from './LineGraph'
 
 import 'react-select/dist/react-select.css'
 import 'react-virtualized/styles.css'
@@ -65,10 +62,10 @@ import 'react-virtualized-select/styles.css'
           wellType: i.WellType,
           clientDepth2: i['Client DEPTH 2'],
           qriDepth2: i['QRI DEPTH 2'],
-          qriDepthRevised: 0,
+          qriDepthRevised: i['QRI DEPTH 2'],
           clientHoleSize: i['Client Hole Size'],
           qriHoleSize: i['QRI Hole Size'],
-          qriHoleSizeRevised: 0,
+          qriHoleSizeRevised: i['QRI Hole Size'],
           operationDate: i['Operation Date'],
           fromDateTime: i['From DateTime'],
           toDateTime: i['To DateTime'],
@@ -81,7 +78,7 @@ import 'react-virtualized-select/styles.css'
           description: i['Activity Description'],
           descriptionEnglish: i['Activity Description (English)'],
           clientP_NP: i['Client P_NP'],
-          qriP_NPRevised: 0,
+          qriP_NPRevised: i['Client P_NP'],
           prob: 0,
           clientPhase: i['Client Phase'],
           qriMajorOperation: 0,
@@ -126,16 +123,30 @@ import 'react-virtualized-select/styles.css'
 
   render() {
     let { data, rawData, selectedWell, wells, files, selectedFile} = this.state
+    let areaData = []
+    let lineData = []
+
+    if (data && data[0]) {
+
+      let noPreSpud = data.filter(i => i.clientHoleSize !== 'pre-spud')
+
+      areaData = noPreSpud.map(i => [parseInt(i.qriHoleSize),parseInt(i.qriDepth2)])
+      lineData = noPreSpud.map(i => [parseFloat(i.fromDateTime), parseInt(i.qriDepth2)])
+
+      name = data[0].wellName
+    }
+
 
     return(
       <div className='ProductSpace' >
         <FileSelector files={files} selectedFile={selectedFile} handleChange={this.handleSelectedFileChange} />
         <WellSelector wells={wells} selectedWell={selectedWell} handleChange={this.handleSelectedWellChange} />
+        <AreaGraph data={areaData} name={name} />
+        <LineGraph data={lineData} name={name} />
         <DataTable data={data}/>
       </div>
     )
   }
 }
-
 
 export default connect(automapState('theme', 'portfolios', 'user'), automapActions('portfolios'))(ProductSpace)

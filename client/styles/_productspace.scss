@@ -277,20 +277,33 @@
 .wellData {
   position: absolute;
   width: 100%;
-  top: 20%;
+  top: 57%;
 }
 
 .well {
   position: absolute;
   width: 50%;
   top:5%;
-  left: 50%
+  left: 50%;
 }
 
 .file {
   position: absolute;
   width: 50%;
-  top: 5%
+  top: 5%;
+}
+
+.area-graph {
+  position: absolute;
+  top: 10%;
+  width: 30%;
+}
+
+.line-graph {
+  position: absolute;
+  top: 10%;
+  width: 70%;
+  left: 30%
 }
 
 
