@@ -296,16 +296,35 @@
 .area-graph {
   position: absolute;
   top: 10%;
-  width: 30%;
+  width: 27%;
 }
 
 .line-graph {
   position: absolute;
   top: 10%;
-  width: 70%;
-  left: 30%
+  width: 63%;
+  left: 27%
 }
 
+.cancel-button {
+  position: absolute;
+  top: 10%;
+  left: 89%;
+  width: 10%
+}
+.save-button {
+  position: absolute;
+  top: 13%;
+  left: 89%;
+  width: 10%
+}
+
+.submit-button {
+  position: absolute;
+  top: 16%;
+  left: 89%;
+  width: 10%
+}
 
  
 

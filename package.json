@@ -39,7 +39,7 @@
     "async": "^2.5.0",
     "aws-sdk": "^2.94.0",
     "axios": "^0.16.1",
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.18.1",
     "classnames": "^2.2.5",
     "co-mysql": "^1.0.0",
     "colors": "^1.1.2",

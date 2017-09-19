@@ -1,12 +1,15 @@
 import express from 'express'
 import XLSX from 'xlsx'
 import fs from 'fs'
+import bodyParser from 'body-parser'
 
 let app = express()
 
 const env = process.env.NODE_ENV || 'dev'
 const isProduction = env === 'production'
 
+app.use(bodyParser.json({limit: '200mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '200mb', parameterLimit:50000}));
 
 app.get('/get_files', (req, res) => {
 	fs.readdir('./inputs', (err, files) => {
@@ -49,7 +52,25 @@ app.get('/read_change_file', (req, res) => {
 		res.end()
 })
 
+app.post('/write_change_file', (req, res) => {
+	let { well } = req.query
+	let data = req.body.data
+	let name = './changes/' + well + '.csv'
 
+	fs.writeFile(name, data)
+
+	res.end()
+})
+
+app.post('/write_submit_file', (req, res) => {
+	let { well } = req.query
+	let data = req.body.data
+	let name = './outputs/' + well + '.train.csv'
+
+	fs.writeFile(name, data)
+
+	res.end()
+})
 
 
 export default app

@@ -80,12 +80,12 @@ import 'react-virtualized-select/styles.css'
           ActivityDescription: i['Activity Description'],
           descriptionEnglish: i['Activity Description (English)'],
           ClientP_NP: i['Client P_NP'],
-          QRIRevisedP_NP: i['Client P_NP'],
-          Probability: 0,
+          QRIRevisedP_NP: null,
+          Probability: null,
           ClientPhase: i['Client Phase'],
-          QRIMajorOperation: 0,
-          NPTCategory: 0,
-          NPTType: 0
+          QRIMajorOperation: null,
+          NPTCategory: null,
+          NPTType: null
         }))
 
         self.setState({
@@ -174,7 +174,7 @@ import 'react-virtualized-select/styles.css'
         <WellSelector wells={wells} selectedWell={selectedWell} handleChange={this.handleSelectedWellChange} />
         <AreaGraph data={areaData} name={name} />
         <LineGraph data={lineData} name={name} />
-        <DataTable data={data} changeData={changeData} selectedChangeFile={selectedChangeFile} />
+        <DataTable data={data} changeData={changeData} selectedChangeFile={selectedChangeFile} selectedWell={selectedWell} />
       </div>
     )
   }
