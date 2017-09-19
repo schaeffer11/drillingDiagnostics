@@ -4,7 +4,6 @@ import autobind from 'autobind-decorator'
 import ReactHighCharts from 'react-highcharts'
 
 
-
 const config = {
         chart: {
           type: 'area'

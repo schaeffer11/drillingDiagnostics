@@ -173,7 +173,7 @@ import 'react-virtualized-select/styles.css'
         <FileSelector files={files} selectedFile={selectedFile} handleChange={this.handleSelectedFileChange} />
         <WellSelector wells={wells} selectedWell={selectedWell} handleChange={this.handleSelectedWellChange} />
         <AreaGraph data={areaData} name={name} />
-        <LineGraph data={lineData} name={name} />
+        <LineGraph data={lineData} colorData={data} name={name} />
         <DataTable data={data} changeData={changeData} selectedChangeFile={selectedChangeFile} selectedWell={selectedWell} />
       </div>
     )

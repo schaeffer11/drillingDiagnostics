@@ -279,7 +279,7 @@ import json2csv from 'json2csv'
           }
             showPageJump={false}
             style={{
-              height: "400px" 
+              height: "507px" 
             }}
             showPageSizeOptions={false}
             defaultPageSize={100}

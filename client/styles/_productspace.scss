@@ -274,10 +274,16 @@
   filter: invert(93%) hue-rotate(180deg);
 }
 
+.chart > div, .highcharts-container {
+  width: 100%;
+  height: 100%;
+}
+
 .wellData {
   position: absolute;
   width: 100%;
-  top: 57%;
+  top: 45%;
+  bottom: 100%
 }
 
 .well {
@@ -297,33 +303,35 @@
   position: absolute;
   top: 10%;
   width: 27%;
+  bottom:55%;
 }
 
 .line-graph {
   position: absolute;
   top: 10%;
   width: 63%;
-  left: 27%
+  left: 27%;
+  bottom:55%;
 }
 
 .cancel-button {
   position: absolute;
   top: 10%;
-  left: 89%;
-  width: 10%
+  left: 91%;
+  width: 8%
 }
 .save-button {
   position: absolute;
   top: 13%;
-  left: 89%;
-  width: 10%
+  left: 91%;
+  width: 8%
 }
 
 .submit-button {
   position: absolute;
   top: 16%;
-  left: 89%;
-  width: 10%
+  left: 91%;
+  width: 8%
 }
 
  

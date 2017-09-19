@@ -16,8 +16,14 @@ const config = {
             text: 'Depth vs. Time'
         },
         plotOptions: {
+            series: {
+              marker: {
+                lineColor: '#000000',
+                lineWidth: 1
+              }
+            },
             scatter: {
-              lineWidth: 2
+              lineWidth: 1
             },
             area: {
                 marker: {
@@ -63,6 +69,7 @@ const config = {
           enabled: false
         },
         series: [{
+          lineColor: '#000000',
           showInLegend: false, 
           data:  []
         }]
@@ -74,12 +81,22 @@ const config = {
 
   }
 
-  componentWillReceiveProps({ data, name, testData }) {
+  componentWillReceiveProps({ data, name, colorData }) {
     let chart = this.chart
     let series = this.chart.getChart().series[0]
+    let color = undefined
 
     if (data[0]) {
-      data = data.map(i => [i[0], -1 * i[1]])
+      data = data.map((i, index) => {
+
+        if (colorData[index].ClientP_NP === 'Productive') {
+          color = '#158115'
+        }
+        else {
+          color = '#bf0404'
+        }
+        return ({x: i[0], y: -1 * i[1], color: color})
+      })
       console.log(data)
       series.setData(data) 
 
