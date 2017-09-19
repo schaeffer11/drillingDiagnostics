@@ -23,8 +23,10 @@ import 'react-virtualized-select/styles.css'
       wells: [],
       files: [],
       selectedFile: undefined,
-      selectedWell: 'Corralillo6890',
-      data: []
+      selectedChangeFile: undefined,
+      selectedWell: undefined,
+      data: [],
+      changeData: undefined
     }
   }
 
@@ -39,9 +41,9 @@ import 'react-virtualized-select/styles.css'
   }
 
   getWells(file) {
-    let { selectedWell } = this.state
+    let { selectedWell, files } = this.state
     let self = this
-
+    console.log(files)
     let fetchStr = '/api/read_file?file=' + file
 
     fetch(fetchStr)
@@ -56,34 +58,34 @@ import 'react-virtualized-select/styles.css'
 
 
         data = data.map(i => ({
-          id: parseInt(i.ID),
-          sideTrackID: 0,
-          wellName: i['Well Name'],
-          wellType: i.WellType,
-          clientDepth2: i['Client DEPTH 2'],
-          qriDepth2: i['QRI DEPTH 2'],
-          qriDepthRevised: i['QRI DEPTH 2'],
-          clientHoleSize: i['Client Hole Size'],
-          qriHoleSize: i['QRI Hole Size'],
-          qriHoleSizeRevised: i['QRI Hole Size'],
-          operationDate: i['Operation Date'],
-          fromDateTime: i['From DateTime'],
-          toDateTime: i['To DateTime'],
-          dateCheck: i['Date Check'],
-          durationDays: i['Duration Days'],
-          timeCheck: i['Time Check'],
-          footage: i.Footage,
-          ropmHr: i['ROP M_hr'],
-          dfs: i.DFS,
-          description: i['Activity Description'],
+          ID: parseInt(i.ID),
+          SideTrackID: 0,
+          WellName: i['Well Name'],
+          WellType: i.WellType,
+          ClientDEPTH2: i['Client DEPTH 2'],
+          QRIDEPTH2: i['QRI DEPTH 2'],
+          QRIDepthRevised: i['QRI DEPTH 2'],
+          ClientHoleSize: i['Client Hole Size'],
+          QRIHoleSize: i['QRI Hole Size'],
+          QRIHoleSizeRevised: i['QRI Hole Size'],
+          OperationDate: i['Operation Date'],
+          FromDateTime: i['From DateTime'],
+          ToDateTime: i['To DateTime'],
+          DateCheck: i['Date Check'],
+          DurationDays: i['Duration Days'],
+          TimeCheck: i['Time Check'],
+          Footage: i.Footage,
+          ROPM_hr: i['ROP M_hr'],
+          DFS: i.DFS,
+          ActivityDescription: i['Activity Description'],
           descriptionEnglish: i['Activity Description (English)'],
-          clientP_NP: i['Client P_NP'],
-          qriP_NPRevised: i['Client P_NP'],
-          prob: 0,
-          clientPhase: i['Client Phase'],
-          qriMajorOperation: 0,
-          nptCategory: 0,
-          nptType: 0
+          ClientP_NP: i['Client P_NP'],
+          QRIRevisedP_NP: i['Client P_NP'],
+          Probability: 0,
+          ClientPhase: i['Client Phase'],
+          QRIMajorOperation: 0,
+          NPTCategory: 0,
+          NPTType: 0
         }))
 
         self.setState({
@@ -103,10 +105,37 @@ import 'react-virtualized-select/styles.css'
 
   handleSelectedWellChange(well) {
     let { rawData } = this.state
+    let fetchStr = '/api/get_change_files'
+
+    fetch(fetchStr)
+      .then(r => r.json())
+      .then(data => {
+        data.forEach(i => {
+          let change = 0
+          if (i.slice(0, -4) === well) {
+            change = 1
+            fetchStr = '/api/read_change_file?file=' + i
+            fetch(fetchStr)
+              .then(r => r.json())
+              .then(data => {
+                this.setState({
+                  changeData: data,
+                  selectedChangeFile: i
+                })
+              })
+          }
+          if (change === 0) {
+            this.setState({
+              changeData: undefined,
+
+            })
+          }
+        })
+      })
 
     this.setState({
       selectedWell: well,
-      data: rawData.filter(i => i.wellName === well)
+      data: rawData.filter(i => i.WellName === well)
     })
   }
 
@@ -121,20 +150,22 @@ import 'react-virtualized-select/styles.css'
     })
   }
 
+
   render() {
-    let { data, rawData, selectedWell, wells, files, selectedFile} = this.state
+    let { data, rawData, selectedWell, wells, files, selectedFile, changeData, selectedChangeFile} = this.state
     let areaData = []
     let lineData = []
+    console.log(data, changeData, selectedChangeFile)
 
     if (data && data[0]) {
+      let noPreSpud = data.filter(i => i.ClientHoleSize !== 'pre-spud')
 
-      let noPreSpud = data.filter(i => i.clientHoleSize !== 'pre-spud')
+      areaData = noPreSpud.map(i => [parseInt(i.QRIHoleSize),parseInt(i.QRIDEPTH2)])
+      lineData = noPreSpud.map(i => [parseFloat(i.FromDateTime), parseInt(i.QRIDEPTH2)])
 
-      areaData = noPreSpud.map(i => [parseInt(i.qriHoleSize),parseInt(i.qriDepth2)])
-      lineData = noPreSpud.map(i => [parseFloat(i.fromDateTime), parseInt(i.qriDepth2)])
-
-      name = data[0].wellName
+      name = data[0].WellName
     }
+
 
 
     return(
@@ -143,7 +174,7 @@ import 'react-virtualized-select/styles.css'
         <WellSelector wells={wells} selectedWell={selectedWell} handleChange={this.handleSelectedWellChange} />
         <AreaGraph data={areaData} name={name} />
         <LineGraph data={lineData} name={name} />
-        <DataTable data={data}/>
+        <DataTable data={data} changeData={changeData} selectedChangeFile={selectedChangeFile} />
       </div>
     )
   }

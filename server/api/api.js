@@ -25,17 +25,30 @@ app.get('/read_file', (req, res) => {
 
 	let data = XLSX.utils.sheet_to_json(workbook.Sheets[sheets[0]])
 
-	// fs.readFile('./inputs/5RandomWellsJuly18.csv', function read(err, data) {
-	//     if (err) {
-	//         throw err;
-	//     }
-	//     console.log(data)
-	//     console.log(data.toString('utf8'))
-	// });
+	res.json(data)
+		res.end()
+})
+
+app.get('/get_change_files', (req, res) => {
+	fs.readdir('./changes', (err, files) => {
+		res.json(files)
+		res.end()
+	})
+})
+
+
+app.get('/read_change_file', (req, res) => {
+	let { file } = req.query
+
+	let workbook = XLSX.readFile('changes/' + file);
+	let sheets = workbook.SheetNames;
+
+	let data = XLSX.utils.sheet_to_json(workbook.Sheets[sheets[0]])
 
 	res.json(data)
 		res.end()
 })
+
 
 
 

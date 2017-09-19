@@ -34,7 +34,7 @@ export const wellColumns = [{
           Header: 'QRIDepthRevised',
           accessor: 'qriDepthRevised',
           Width: 175,
-          sortable: false
+          sortable: false,
         }, {
           Header: 'ClientHoleSize',
           accessor: 'clientHoleSize',
